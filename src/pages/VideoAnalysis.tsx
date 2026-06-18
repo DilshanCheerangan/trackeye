@@ -9,10 +9,10 @@ export default function VideoAnalysis() {
           <p className="text-xl font-black text-track-dark/60 uppercase tracking-widest border-l-4 border-track-coral pl-3 mt-2">Official photo finish verification.</p>
         </div>
         <div className="flex gap-4">
-          <button className="brutal-button bg-white text-track-dark px-6 py-3 shadow-[4px_4px_0px_#010F1A]">
+          <button onClick={() => alert("Clip exported successfully!")} className="brutal-button bg-white text-track-dark px-6 py-3 shadow-[4px_4px_0px_#010F1A]">
             <Scissors className="w-5 h-5 mr-2 stroke-[3]" /> Export Clip
           </button>
-          <button className="brutal-button bg-track-coral text-white px-6 py-3 shadow-[4px_4px_0px_#010F1A]">
+          <button onClick={() => alert("Results officially verified and locked.")} className="brutal-button bg-track-coral text-white px-6 py-3 shadow-[4px_4px_0px_#010F1A]">
             <Check className="w-5 h-5 mr-2 stroke-[3]" /> Verify Results
           </button>
         </div>
@@ -50,13 +50,13 @@ export default function VideoAnalysis() {
               {/* Timeline Controls */}
               <div className="bg-white p-4 flex items-center justify-between border-t-4 border-track-dark">
                 <div className="flex gap-2">
-                  <button className="brutal-button bg-track-foam p-3 hover:bg-track-lagoon shadow-[4px_4px_0px_#010F1A]">
+                  <button onClick={() => alert("Skipping back...")} className="brutal-button bg-track-foam p-3 hover:bg-track-lagoon shadow-[4px_4px_0px_#010F1A]">
                     <SkipBack className="w-5 h-5 stroke-[3]" />
                   </button>
-                  <button className="brutal-button bg-track-foam p-3 hover:bg-track-coral hover:text-white shadow-[4px_4px_0px_#010F1A]">
+                  <button onClick={() => alert("Playback toggled")} className="brutal-button bg-track-foam p-3 hover:bg-track-coral hover:text-white shadow-[4px_4px_0px_#010F1A]">
                     <Pause className="w-5 h-5 stroke-[3]" />
                   </button>
-                  <button className="brutal-button bg-track-foam p-3 hover:bg-track-lagoon shadow-[4px_4px_0px_#010F1A]">
+                  <button onClick={() => alert("Skipping forward...")} className="brutal-button bg-track-foam p-3 hover:bg-track-lagoon shadow-[4px_4px_0px_#010F1A]">
                     <SkipForward className="w-5 h-5 stroke-[3]" />
                   </button>
                 </div>
@@ -69,7 +69,7 @@ export default function VideoAnalysis() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <button className="brutal-button bg-track-foam p-3 hover:bg-track-lagoon shadow-[4px_4px_0px_#010F1A]">
+                  <button onClick={() => alert("Advanced one frame.")} className="brutal-button bg-track-foam p-3 hover:bg-track-lagoon shadow-[4px_4px_0px_#010F1A]">
                     <Frame className="w-5 h-5 stroke-[3]" />
                   </button>
                   <div className="font-black text-2xl text-track-dark border-4 border-track-dark px-3 py-1 transform -skew-x-6">

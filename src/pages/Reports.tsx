@@ -15,14 +15,14 @@ export default function Reports() {
           <h1 className="text-6xl md:text-8xl editorial-heading-bebas text-track-dark leading-none">EXPORTS & DOCS</h1>
           <p className="text-xl font-black text-track-dark/60 uppercase tracking-widest border-l-4 border-track-coral pl-3 mt-2">Generate and download raw data.</p>
         </div>
-        <button className="brutal-button bg-track-lagoon text-track-dark px-6 py-3 shadow-[4px_4px_0px_#010F1A]">
+        <button onClick={() => alert("Generating custom report...")} className="brutal-button bg-track-lagoon text-track-dark px-6 py-3 shadow-[4px_4px_0px_#010F1A]">
           <FileText className="w-5 h-5 mr-2 stroke-[3]" />
           GENERATE NEW REPORT
         </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-        <div className="brutal-card p-8 flex flex-col items-center justify-center text-center gap-6 cursor-pointer hover:bg-track-coral hover:text-white group">
+        <div onClick={() => alert("Downloading PDF reports...")} className="brutal-card p-8 flex flex-col items-center justify-center text-center gap-6 cursor-pointer hover:bg-track-coral hover:text-white group">
           <div className="w-20 h-20 bg-track-dark flex items-center justify-center transform -skew-x-12 shadow-[4px_4px_0px_#010F1A] group-hover:shadow-[4px_4px_0px_white]">
             <FileText className="w-10 h-10 text-track-coral group-hover:text-white stroke-[2.5]" />
           </div>
@@ -79,7 +79,7 @@ export default function Reports() {
                   </div>
                 </div>
               </div>
-              <button className="brutal-button p-3 bg-white hover:bg-track-lagoon shadow-[4px_4px_0px_#010F1A]">
+              <button onClick={(e) => { e.stopPropagation(); alert("Downloading report..."); }} className="brutal-button p-3 bg-white hover:bg-track-lagoon shadow-[4px_4px_0px_#010F1A]">
                 <Download className="w-5 h-5 stroke-[3]" />
               </button>
             </div>

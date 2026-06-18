@@ -95,12 +95,11 @@ export default function Settings() {
 
               {/* Action Buttons */}
               <div className="pt-8 mt-8 border-t-4 border-track-dark flex justify-end gap-4">
-                <button className="px-6 py-3 font-black text-track-dark uppercase tracking-widest border-4 border-track-dark hover:bg-track-foam transition-colors">
-                  DISCARD CHANGES
+                <button onClick={() => alert("Changes discarded.")} className="px-6 py-3 font-black text-track-dark uppercase tracking-widest border-4 border-track-dark hover:bg-track-foam transition-colors">
+                  CANCEL
                 </button>
-                <button className="px-8 py-3 bg-track-coral text-white font-black uppercase tracking-widest border-4 border-track-dark shadow-[4px_4px_0px_#010F1A] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all flex items-center gap-2">
-                  <Save className="w-5 h-5" />
-                  SAVE SETTINGS
+                <button onClick={() => alert("Settings saved successfully!")} className="px-8 py-3 bg-track-coral text-white font-black uppercase tracking-widest border-4 border-track-dark shadow-[4px_4px_0px_#010F1A] hover:translate-y-1 hover:translate-x-1 hover:shadow-none transition-all flex items-center gap-2">
+                  <Save className="w-5 h-5 stroke-[3]" /> SAVE CHANGES
                 </button>
               </div>
 

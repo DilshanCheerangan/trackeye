@@ -1,5 +1,6 @@
 import { Calendar, MapPin, Trophy, Users, ArrowRight, Play, CheckCircle, Trash } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface Competition {
   id: number;
@@ -14,6 +15,7 @@ interface Competition {
 }
 
 export default function Competitions() {
+  const navigate = useNavigate();
   const [competitions, setCompetitions] = useState<Competition[]>([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -183,7 +185,7 @@ export default function Competitions() {
                 >
                   <Trash className="w-5 h-5" />
                 </button>
-                <button className="w-12 h-12 bg-white border-4 border-track-dark flex items-center justify-center transform -skew-x-6 hover:bg-track-lagoon transition-colors">
+                <button onClick={(e) => { e.stopPropagation(); navigate('/live'); }} className="w-12 h-12 bg-white border-4 border-track-dark flex items-center justify-center transform -skew-x-6 hover:bg-track-lagoon transition-colors">
                   <ArrowRight className="w-6 h-6 stroke-[3]" />
                 </button>
               </div>
@@ -219,7 +221,7 @@ export default function Competitions() {
             </div>
             <h3 className="text-3xl editorial-heading-bebas mb-2">RUN SIMULATION</h3>
             <p className="text-sm font-bold text-white/60 mb-6 uppercase">Test camera feeds and timing gates before live events.</p>
-            <button className="w-full bg-white text-track-dark font-black uppercase px-4 py-3 border-4 border-track-coral shadow-[4px_4px_0px_#FF7A45] hover:shadow-none hover:translate-y-1 hover:translate-x-1 transition-all">
+            <button onClick={() => navigate('/live')} className="w-full bg-white text-track-dark font-black uppercase px-4 py-3 border-4 border-track-coral shadow-[4px_4px_0px_#FF7A45] hover:shadow-none hover:translate-y-1 hover:translate-x-1 transition-all">
               START TEST
             </button>
           </div>

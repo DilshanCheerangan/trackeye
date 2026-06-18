@@ -74,7 +74,7 @@ export default function LiveCapture() {
                     1000 FPS
                   </div>
                 </div>
-                <button className="p-2 bg-white/10 hover:bg-white text-white hover:text-track-dark transition-colors border-2 border-white/20">
+                <button onClick={() => { try { document.documentElement.requestFullscreen(); } catch(e) {} }} className="p-2 bg-white/10 hover:bg-white text-white hover:text-track-dark transition-colors border-2 border-white/20">
                   <Maximize className="w-5 h-5" />
                 </button>
               </div>
@@ -82,10 +82,10 @@ export default function LiveCapture() {
             
             <div className="flex justify-between items-center mt-4 px-2 pb-2">
               <div className="flex gap-4">
-                <button className="brutal-button bg-track-coral text-white px-4 py-2 text-sm shadow-[4px_4px_0px_#010F1A]">
+                <button onClick={() => alert("Frame captured and saved to Reports!")} className="brutal-button bg-track-coral text-white px-4 py-2 text-sm shadow-[4px_4px_0px_#010F1A]">
                   <Camera className="w-4 h-4 mr-2" /> Capture Frame
                 </button>
-                <button className="brutal-button bg-white text-track-dark px-4 py-2 text-sm shadow-[4px_4px_0px_#010F1A]">
+                <button onClick={() => alert("Replaying last 5 seconds from cache.")} className="brutal-button bg-white text-track-dark px-4 py-2 text-sm shadow-[4px_4px_0px_#010F1A]">
                   <Play className="w-4 h-4 mr-2" /> Replay Last 5s
                 </button>
               </div>

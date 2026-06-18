@@ -132,7 +132,7 @@ export default function Athletes() {
             className="w-full bg-transparent border-none focus:outline-none px-4 font-black text-track-dark uppercase tracking-wider placeholder:text-track-dark/30"
           />
         </div>
-        <button className="bg-track-dark text-white font-black uppercase px-6 py-3 border-4 border-track-dark flex items-center gap-2 hover:bg-track-foam hover:text-track-dark transition-colors">
+        <button onClick={() => alert("Filters functionality is under development.")} className="bg-track-dark text-white font-black uppercase px-6 py-3 border-4 border-track-dark flex items-center gap-2 hover:bg-track-foam hover:text-track-dark transition-colors">
           <Filter className="w-5 h-5" />
           FILTERS
         </button>
