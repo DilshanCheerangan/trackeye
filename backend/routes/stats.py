@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends
+from fastapi.responses import PlainTextResponse
 from sqlalchemy.orm import Session
 from ..database import get_db
 from .. import models
@@ -25,3 +26,27 @@ def get_stats(db: Session = Depends(get_db)):
         "results_published": sum(comp.events_completed for comp in db.query(models.Competition).all()),
         "new_records": 4
     }
+
+@router.get("/activity")
+def get_activity(db: Session = Depends(get_db)):
+    base_competitions = max(1, db.query(models.Competition).count())
+    return [
+        {"time": '08:00', "events": base_competitions * 1, "athletes": base_competitions * 20},
+        {"time": '10:00', "events": base_competitions * 3, "athletes": base_competitions * 60},
+        {"time": '12:00', "events": base_competitions * 2, "athletes": base_competitions * 45},
+        {"time": '14:00', "events": base_competitions * 4, "athletes": base_competitions * 80},
+        {"time": '16:00', "events": base_competitions * 3, "athletes": base_competitions * 55},
+        {"time": '18:00', "events": base_competitions * 1, "athletes": base_competitions * 15},
+    ]
+
+@router.get("/report/csv")
+def download_csv_report(db: Session = Depends(get_db)):
+    athletes = db.query(models.Athlete).all()
+    csv_content = "ID,Name,Event,Island,PB,Status\n"
+    for a in athletes:
+        csv_content += f"{a.athlete_id},{a.name},{a.event},{a.island},{a.pb},{a.status}\n"
+    return PlainTextResponse(
+        content=csv_content, 
+        media_type="text/csv", 
+        headers={"Content-Disposition": "attachment; filename=athletes_report.csv"}
+    )

@@ -15,10 +15,14 @@ export default function Reports() {
           <h1 className="text-6xl md:text-8xl editorial-heading-bebas text-track-dark leading-none">EXPORTS & DOCS</h1>
           <p className="text-xl font-black text-track-dark/60 uppercase tracking-widest border-l-4 border-track-coral pl-3 mt-2">Generate and download raw data.</p>
         </div>
-        <button onClick={() => alert("Generating custom report...")} className="brutal-button bg-track-lagoon text-track-dark px-6 py-3 shadow-[4px_4px_0px_#010F1A]">
-          <FileText className="w-5 h-5 mr-2 stroke-[3]" />
-          GENERATE NEW REPORT
-        </button>
+        <div className="flex gap-4">
+          <button onClick={() => alert("Report generation scheduled.")} className="px-6 py-4 bg-track-foam border-4 border-track-dark font-black uppercase tracking-widest text-track-dark hover:bg-track-lagoon transition-all transform -skew-x-6 hover:-translate-y-1 shadow-[4px_4px_0px_#010F1A]">
+            Generate Report
+          </button>
+          <a href={`${import.meta.env.VITE_API_URL || 'http://localhost:8001/api'}/stats/report/csv`} download className="inline-block px-6 py-4 bg-track-dark border-4 border-track-dark font-black uppercase tracking-widest text-white hover:bg-track-coral transition-all transform -skew-x-6 hover:-translate-y-1 shadow-[4px_4px_0px_#FF7A45]">
+            Download CSV
+          </a>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">

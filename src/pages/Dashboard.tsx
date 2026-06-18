@@ -3,14 +3,6 @@ import MetricCard from '../components/ui/MetricCard';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useState, useEffect } from 'react';
 
-const performanceData = [
-  { time: '08:00', events: 5, athletes: 120 },
-  { time: '10:00', events: 15, athletes: 350 },
-  { time: '12:00', events: 8, athletes: 180 },
-  { time: '14:00', events: 25, athletes: 580 },
-  { time: '16:00', events: 18, athletes: 420 },
-  { time: '18:00', events: 10, athletes: 210 },
-];
 
 export default function Dashboard() {
   const [stats, setStats] = useState({
@@ -23,6 +15,7 @@ export default function Dashboard() {
   });
 
   const [competitions, setCompetitions] = useState<any[]>([]);
+  const [performanceData, setPerformanceData] = useState<any[]>([]);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8001/api'}/stats/`)
@@ -42,6 +35,11 @@ export default function Dashboard() {
       .catch(err => {
         console.error("Failed to fetch competitions:", err);
       });
+
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8001/api'}/stats/activity`)
+      .then(res => res.json())
+      .then(data => setPerformanceData(data))
+      .catch(err => console.error("Failed to fetch activity:", err));
   }, []);
 
   const isDemo = sessionStorage.getItem('demoMode') === 'true';

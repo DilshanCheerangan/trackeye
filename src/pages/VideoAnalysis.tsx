@@ -1,6 +1,27 @@
 import { Pause, SkipBack, SkipForward, Frame, Scissors, Check, Crosshair } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function VideoAnalysis() {
+  const [results, setResults] = useState<any[]>([]);
+  const isDemo = sessionStorage.getItem('demoMode') === 'true';
+
+  useEffect(() => {
+    if (!isDemo) {
+      fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8001/api'}/video/var-results`)
+        .then(res => res.json())
+        .then(data => setResults(data))
+        .catch(err => console.error(err));
+    } else {
+      setResults([
+        { pos: 1, lane: 4, name: "M. JOHNSON", time: "9.862", diff: "-" },
+        { pos: 2, lane: 5, name: "A. DE GRASSE", time: "9.868", diff: "+0.006" },
+        { pos: 3, lane: 3, name: "C. COLEMAN", time: "9.891", diff: "+0.029" },
+        { pos: 4, lane: 6, name: "F. OMANYALA", time: "9.924", diff: "+0.062" },
+        { pos: 5, lane: 2, name: "A. SIMBINE", time: "9.931", diff: "+0.069" },
+      ]);
+    }
+  }, [isDemo]);
+
   return (
     <div className="pb-10 pt-4 px-2 md:px-0">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
@@ -86,14 +107,10 @@ export default function VideoAnalysis() {
             <div className="p-4 border-b-8 border-track-dark bg-track-coral">
               <h3 className="font-black text-3xl editorial-heading-bebas text-white">OFFICIAL RANKING</h3>
             </div>
-            <div className="p-4 space-y-3 bg-white flex-1">
-              {[
-                { pos: 1, lane: 4, name: "M. JOHNSON", time: "9.862", diff: "-" },
-                { pos: 2, lane: 5, name: "A. DE GRASSE", time: "9.868", diff: "+0.006" },
-                { pos: 3, lane: 3, name: "C. COLEMAN", time: "9.891", diff: "+0.029" },
-                { pos: 4, lane: 6, name: "F. OMANYALA", time: "9.924", diff: "+0.062" },
-                { pos: 5, lane: 2, name: "A. SIMBINE", time: "9.931", diff: "+0.069" },
-              ].map((result, i) => (
+            <div className="p-4 space-y-3 bg-white flex-1 overflow-y-auto">
+              {results.length === 0 ? (
+                 <div className="text-center font-bold text-track-dark/40 py-8 uppercase">NO VAR DATA AVAILABLE</div>
+              ) : results.map((result, i) => (
                 <div key={i} className={`flex items-center gap-3 p-3 border-4 border-track-dark ${i === 0 ? 'bg-track-lagoon' : 'bg-track-foam'} hover:-translate-y-1 hover:shadow-[4px_4px_0px_#010F1A] transition-all cursor-pointer`}>
                   <div className={`w-8 h-8 flex items-center justify-center font-black text-lg transform -skew-x-6 ${i === 0 ? 'bg-track-dark text-track-lagoon' : 'bg-track-dark text-white'}`}>
                     {result.pos}
