@@ -31,7 +31,7 @@ export default function Competitions() {
   });
 
   const fetchCompetitions = () => {
-    fetch('http://localhost:8001/api/competitions/')
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8001/api'}/competitions/`)
       .then(res => res.json())
       .then(data => {
         setCompetitions(data);
@@ -50,7 +50,7 @@ export default function Competitions() {
   const handleDelete = async (id: number) => {
     if (window.confirm("Are you sure you want to delete this competition?")) {
       try {
-        const response = await fetch(`http://localhost:8001/api/competitions/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8001/api'}/competitions/${id}`, {
           method: 'DELETE'
         });
         if (response.ok) {
@@ -77,7 +77,7 @@ export default function Competitions() {
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8001/api/competitions/', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8001/api'}/competitions/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newMeet)

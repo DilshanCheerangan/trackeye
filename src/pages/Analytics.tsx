@@ -19,7 +19,7 @@ export default function Analytics() {
 
   useEffect(() => {
     if (!isDemo) {
-      fetch('http://localhost:8001/api/athletes/')
+      fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8001/api'}/athletes/`)
         .then(res => res.json())
         .then(data => {
           setAthletes(data);

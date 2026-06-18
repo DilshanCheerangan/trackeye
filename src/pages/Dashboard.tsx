@@ -25,7 +25,7 @@ export default function Dashboard() {
   const [competitions, setCompetitions] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:8001/api/stats/')
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8001/api'}/stats/`)
       .then(res => res.json())
       .then(data => {
         setStats(data);
@@ -34,7 +34,7 @@ export default function Dashboard() {
         console.error("Failed to fetch dashboard stats:", err);
       });
 
-    fetch('http://localhost:8001/api/competitions/')
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8001/api'}/competitions/`)
       .then(res => res.json())
       .then(data => {
         setCompetitions(data);

@@ -12,7 +12,7 @@ app = FastAPI(title="TrackEye Backend API")
 # Setup CORS for Vite frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:5174", "http://localhost:5175", "http://localhost:5176"], # Vite default ports
+    allow_origins=["*"], # Allow all origins in production, or specify your hosted domain
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

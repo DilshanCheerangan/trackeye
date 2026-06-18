@@ -5,14 +5,14 @@ export default function LiveCapture() {
   const [liveSpeed, setLiveSpeed] = useState<number>(38.2);
   const [liveEvent, setLiveEvent] = useState<string>("MEN'S 100M FINAL");
 
-  const [feedSrc, setFeedSrc] = useState<string>("http://localhost:8001/api/video/feed");
+  const [feedSrc, setFeedSrc] = useState<string>(`${import.meta.env.VITE_API_URL || 'http://localhost:8001/api'}/video/feed`);
 
   const handleFeedError = () => {
     setFeedSrc("https://images.unsplash.com/photo-1522850937840-0a256a4b1307?auto=format&fit=crop&q=80&w=1200");
   };
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:8001/ws/live-metrics');
+    const ws = new WebSocket(`${import.meta.env.VITE_WS_URL || 'ws://localhost:8001/ws'}/live-metrics`);
     
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);

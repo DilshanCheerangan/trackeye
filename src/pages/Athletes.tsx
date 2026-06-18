@@ -26,7 +26,7 @@ export default function Athletes() {
   });
 
   const fetchAthletes = () => {
-    fetch('http://localhost:8001/api/athletes/')
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8001/api'}/athletes/`)
       .then(res => res.json())
       .then(data => {
         setAthletes(data);
@@ -45,7 +45,7 @@ export default function Athletes() {
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8001/api/athletes/', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8001/api'}/athletes/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newAthlete)
@@ -65,7 +65,7 @@ export default function Athletes() {
   const handleDelete = async (id: number) => {
     if (window.confirm("Are you sure you want to delete this athlete?")) {
       try {
-        const response = await fetch(`http://localhost:8001/api/athletes/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8001/api'}/athletes/${id}`, {
           method: 'DELETE'
         });
         if (response.ok) {

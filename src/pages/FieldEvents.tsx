@@ -6,7 +6,7 @@ export default function FieldEvents() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:8001/api/athletes/')
+    fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8001/api'}/athletes/`)
       .then(res => res.json())
       .then(data => {
         // Find field athletes
