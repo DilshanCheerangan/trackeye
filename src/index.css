@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-track-ocean: #012B44;
+  --color-track-ocean-light: #023D61;
+  --color-track-lagoon: #00C8C8;
+  --color-track-coral: #FF7A45;
+  --color-track-sand: #D9B26F;
+  --color-track-foam: #F8FAFC;
+  --color-track-dark: #010F1A;
+
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-editorial: 'Anton', sans-serif;
+  --font-bebas: 'Bebas Neue', sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-track-foam text-track-dark font-body;
+    min-height: 100vh;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-black tracking-tight uppercase;
+  }
+}
+
+@layer utilities {
+  .editorial-heading {
+    @apply font-editorial uppercase tracking-tighter;
+  }
+  
+  .editorial-heading-bebas {
+    @apply font-bebas uppercase tracking-normal;
+  }
+
+  .brutal-card {
+    @apply bg-white border-8 border-track-dark shadow-[8px_8px_0px_#010F1A] transition-all duration-300;
+  }
+  
+  .brutal-card-hover {
+    @apply hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_#010F1A];
+  }
+
+  .brutal-button {
+    @apply inline-flex items-center justify-center font-black uppercase tracking-wider border-4 border-track-dark transition-all duration-300 active:translate-y-1 active:translate-x-1 active:shadow-none;
+  }
+
+}
